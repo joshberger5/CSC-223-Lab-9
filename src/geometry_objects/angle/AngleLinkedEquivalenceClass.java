@@ -23,7 +23,8 @@ import utilities.eq_classes.LinkedEquivalenceClass;
  * 
  * @author XXX
  */
-public class AngleLinkedEquivalenceClass extends LinkedEquivalenceClass<Angle>
-{
-    // TODO
+public class AngleLinkedEquivalenceClass extends LinkedEquivalenceClass<Angle> {
+	public AngleLinkedEquivalenceClass() {
+		super(new AngleStructureComparator());
+	}
 }
