@@ -21,7 +21,9 @@ public class Segment extends GeometricObject
 
 	public Point getPoint1() { return _point1; }
 	public Point getPoint2() { return _point2; }
-	public double length() { return _length; }
+	public double length() { 
+		return Point.distance(_point2, _point1);
+	}
 	public double slope()
 	{
 		try { return GeometryUtilities.slope(_point1, _point2); }
