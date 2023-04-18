@@ -62,19 +62,15 @@ public class AngleStructureComparator implements Comparator<Angle>
 	{
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
-		// if not, the angle's are structurally incomparable
-		Segment leftRay1Corresponder;
-		if (left.getRay1().isCollinearWith(right.getRay1())) leftRay1Corresponder = right.getRay1();
-		else if (left.getRay1().isCollinearWith(right.getRay1())) leftRay1Corresponder = right.getRay2();
-		else return STRUCTURALLY_INCOMPARABLE;
+		// if not, the angles are structurally incomparable
+		Segment leftRay1Corresponder = corresponder(left.getRay1(), right);
+		if (leftRay1Corresponder == null) return STRUCTURALLY_INCOMPARABLE;;
 		
-		// checks if left's 2st ray corresponds with one of right's rays
+		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
-		// if not, the angle's are structurally incomparable
-		Segment leftRay2Corresponder;
-		if (left.getRay2().isCollinearWith(right.getRay1())) leftRay2Corresponder = right.getRay1();
-		else if (left.getRay2().isCollinearWith(right.getRay1())) leftRay2Corresponder = right.getRay2();
-		else return STRUCTURALLY_INCOMPARABLE;
+		// if not, the angles are structurally incomparable
+		Segment leftRay2Corresponder = corresponder(left.getRay2(), right);
+		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;;
 		
 		// checks both rays for the left angle are greater than
 		// or equal in length to the corresponding rays in the right angle
@@ -87,11 +83,24 @@ public class AngleStructureComparator implements Comparator<Angle>
 		// or equal in length to the corresponding rays in the right angle
 		// if so, return -1
 		if (left.getRay1().length() <= leftRay1Corresponder.length() &&
-				left.getRay2().length() <= leftRay2Corresponder.length()) 
-				return -1;
+			left.getRay2().length() <= leftRay2Corresponder.length()) 
+			return -1;
 		
 		// they are structurally comparable, but both rays for the left angle
 		// aren't both greater or both less than both rays for the right angle
 		return 0;
+	}
+	
+	/**
+	 * Checks to see if a Segment is collinear with one of the Rays for an Angle
+	 * @param s - the Segment to check against the Rays
+	 * @param a - the Angle containing the Rays to check against the Segment
+	 * @return which Ray from Angle a s is collinear with,
+	 * if neither, returns null
+	 */
+	private Segment corresponder(Segment s, Angle a) {
+		if (s.isCollinearWith(a.getRay1())) return a.getRay1();
+		if (s.isCollinearWith(a.getRay2())) return a.getRay2();
+		return null;
 	}
 }
