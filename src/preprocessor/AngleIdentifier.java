@@ -19,7 +19,7 @@ public class AngleIdentifier
 	}
 
 	/*
-	 * Compute the figure triangles on the fly when requested; memoize results for subsequent calls.
+	 * Compute the figure triangles on the fly when requested; memorize results for subsequent calls.
 	 */
 	public AngleEquivalenceClasses getAngles()
 	{
@@ -34,6 +34,17 @@ public class AngleIdentifier
 
 	private void computeAngles()
 	{
-		// TODO
+		Segment[] segments = (Segment[]) _segments.keySet().toArray();
+		
+		for(int i=0; i<segments.length-1; i++) {
+			for(int j=i; j<segments.length; j++) {
+				try {
+					Angle angle = new Angle(segments[i], segments[j]);
+					_angles.add(angle);
+				}
+				catch (FactException e) {}	
+			}
+		}
 	}
 }
+

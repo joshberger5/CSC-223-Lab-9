@@ -12,9 +12,9 @@ import java.util.Comparator;
  * @param <T>
  */
 public class LinkedEquivalenceClass<T> {
-	private T _canonical;
-	private Comparator<T> _comparator;
-	private LinkedList<T> _rest;
+	protected T _canonical;
+	protected Comparator<T> _comparator;
+	protected LinkedList<T> _rest;
 	
 	/**
 	 * instantiate the variables

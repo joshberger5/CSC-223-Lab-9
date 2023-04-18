@@ -223,7 +223,7 @@ public class Segment extends GeometricObject
     // This functionality may be helpful to add to your Segment class.
     //
 	
-    /*
+    /**
      * @param thisRay -- a ray
      * @param thatRay -- a ray
      * @return Does thatRay overlay thisRay? As in, both share same origin point, but other two points
