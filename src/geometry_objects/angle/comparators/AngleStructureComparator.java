@@ -60,6 +60,7 @@ public class AngleStructureComparator implements Comparator<Angle>
 	@Override
 	public int compare(Angle left, Angle right)
 	{
+		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
 		// if not, the angles are structurally incomparable

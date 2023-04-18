@@ -96,8 +96,8 @@ public class Point implements Comparable<Point>
 	 * @param b -- point 2
 	 * @return the distance between the two points
 	 */
-	public static int distance(Point a, Point b) {
-		return (int)Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+	public static double distance(Point a, Point b) {
+		return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
 	}
 
 	@Override
