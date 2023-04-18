@@ -116,4 +116,14 @@ public class Point implements Comparable<Point>
     {
 		return _name + "(" + _x + ", " + _y + ")";
 	}
+
+	/**
+	 * calculates the distance between two points
+	 * @param point a
+	 * @param point b
+	 * @return the distance between the two points
+	 */
+	public static int distance(Point a, Point b) {
+		return (int)Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+	}
 }
