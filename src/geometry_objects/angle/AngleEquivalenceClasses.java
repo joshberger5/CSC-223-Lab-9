@@ -1,5 +1,7 @@
 package geometry_objects.angle;
 
+import java.util.Comparator;
+
 import geometry_objects.angle.comparators.AngleStructureComparator;
 import utilities.eq_classes.EquivalenceClasses;
 
@@ -20,7 +22,11 @@ import utilities.eq_classes.EquivalenceClasses;
  *   canonical = BAE
  *   rest = BAF, CAE, DAE, CAF, DAF
  */
-public class AngleEquivalenceClasses extends EquivalenceClasses<Angle>
+public class AngleEquivalenceClasses extends utilities.eq_classes.EquivalenceClasses<Angle>
 {
+
+	public AngleEquivalenceClasses(Comparator<Angle> comparator) {
+		super(comparator);
+	}
 	// TODO
 }
