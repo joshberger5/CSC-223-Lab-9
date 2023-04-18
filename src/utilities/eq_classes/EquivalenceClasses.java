@@ -1,4 +1,4 @@
-package utilities;
+package utilities.eq_classes;
 
 import java.util.ArrayList;
 import java.util.Comparator;

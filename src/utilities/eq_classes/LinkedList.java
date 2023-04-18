@@ -1,4 +1,4 @@
-package utilities;
+package utilities.eq_classes;
 
 /**
  * A singly linked list with head and tail sentinel nodes
