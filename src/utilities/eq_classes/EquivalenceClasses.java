@@ -33,7 +33,7 @@ public class EquivalenceClasses<T> {
 	 * @param element
 	 * @return whether the class was created
 	 */
-	private boolean createNewEquivalenceClassWithElement(T element) {
+	protected boolean createNewEquivalenceClassWithElement(T element) {
 		LinkedEquivalenceClass<T> equivalence = new LinkedEquivalenceClass<T>(_comparator);
 		equivalence.add(element);
 		return _classes.add(equivalence);

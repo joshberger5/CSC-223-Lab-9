@@ -29,6 +29,17 @@ public class AngleEquivalenceClasses extends EquivalenceClasses<Angle> {
 	
 	public AngleEquivalenceClasses() {
 		super(new AngleStructureComparator());
-		_classes = new ArrayList<AngleLinkedEquivalenceClass>();
 	}
+	
+	/**                                                                                  
+	 * creates a new equivalence class with the element                                 
+	 * @param element                                                                   
+	 * @return whether the class was created                                            
+	 */
+	@Override
+    protected boolean createNewEquivalenceClassWithElement(Angle element) {
+    	LinkedEquivalenceClass<Angle> equivalence = new AngleLinkedEquivalenceClass();
+    	equivalence.add(element);
+    	return _classes.add(equivalence);
+    }
 }
