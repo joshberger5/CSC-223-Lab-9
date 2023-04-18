@@ -89,6 +89,16 @@ public class Point implements Comparable<Point>
 		
 		else return 0;
 	}
+	
+	/**
+	 * calculates the distance between two points
+	 * @param a -- point 1
+	 * @param b -- point 2
+	 * @return the distance between the two points
+	 */
+	public static int distance(Point a, Point b) {
+		return (int)Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+	}
 
 	@Override
 	public int compareTo(Point that)
@@ -115,15 +125,5 @@ public class Point implements Comparable<Point>
 	public String toString()
     {
 		return _name + "(" + _x + ", " + _y + ")";
-	}
-
-	/**
-	 * calculates the distance between two points
-	 * @param point a
-	 * @param point b
-	 * @return the distance between the two points
-	 */
-	public static int distance(Point a, Point b) {
-		return (int)Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
 	}
 }
