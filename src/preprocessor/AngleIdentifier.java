@@ -1,5 +1,6 @@
 package preprocessor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,12 +35,12 @@ public class AngleIdentifier
 
 	private void computeAngles()
 	{
-		Segment[] segments = (Segment[]) _segments.keySet().toArray();
+		ArrayList<Segment> segments = new ArrayList<Segment>(_segments.keySet());
 		
-		for(int i=0; i<segments.length-1; i++) {
-			for(int j=i; j<segments.length; j++) {
+		for(int i=0; i<segments.size()-1; i++) {
+			for(int j=i; j<segments.size(); j++) {
 				try {
-					Angle angle = new Angle(segments[i], segments[j]);
+					Angle angle = new Angle(segments.get(i), segments.get(j));
 					_angles.add(angle);
 				}
 				catch (FactException e) {}	
