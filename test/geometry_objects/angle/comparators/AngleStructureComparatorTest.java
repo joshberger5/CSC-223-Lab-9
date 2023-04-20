@@ -9,7 +9,7 @@ import geometry_objects.Segment;
 import geometry_objects.angle.Angle;
 import geometry_objects.points.Point;
 
-class ASTTest {
+class AngleStructureComparatorTest {
 
 	@Test
 	void StructurallyComparableEqualsTest() throws FactException {
