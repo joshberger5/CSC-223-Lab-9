@@ -39,16 +39,16 @@ public class TriangleIdentifier
 
 	private void computeTriangles()
 	{
-		Segment[] segments = (Segment[]) _segments.keySet().toArray();
+		ArrayList<Segment> segments = new ArrayList<Segment>(_segments.keySet());
 		
-		for(int i=0; i<segments.length-2; i++) {
-			for(int j=i+1; j<segments.length-1; j++) {
-				for (int k=j+1; k<segments.length; k++) {
+		for(int i=0; i<segments.size()-2; i++) {
+			for(int j=i+1; j<segments.size()-1; j++) {
+				for (int k=j+1; k<segments.size(); k++) {
 					try {
 						List<Segment> segs = new ArrayList<Segment>();
-						segs.add(segments[i]);
-						segs.add(segments[j]);
-						segs.add(segments[k]);
+						segs.add(segments.get(i));
+						segs.add(segments.get(j));
+						segs.add(segments.get(k));
 						Triangle triangle = new Triangle(segs);
 						_triangles.add(triangle);
 					}

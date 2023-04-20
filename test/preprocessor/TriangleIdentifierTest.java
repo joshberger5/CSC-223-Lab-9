@@ -16,6 +16,7 @@ import geometry_objects.Triangle;
 import geometry_objects.points.Point;
 import geometry_objects.points.PointDatabase;
 import input.components.FigureNode;
+import preprocessor.delegates.ImplicitPointPreprocessor;
 import input.InputFacade;
 
 class TriangleIdentifierTest
@@ -29,12 +30,17 @@ class TriangleIdentifierTest
 		FigureNode fig = InputFacade.extractFigure("crossing_symmetric_triangle.json");
 
 		Map.Entry<PointDatabase, Set<Segment>> pair = InputFacade.toGeometryRepresentation(fig);
+		
+		ArrayList<Segment> segments = new ArrayList<Segment>(pair.getValue());
 
 		_points = pair.getKey();
 
 		_pp = new Preprocessor(_points, pair.getValue());
 
 		_pp.analyze();
+		
+		Set<Point> implicitPoints = ImplicitPointPreprocessor.compute(_points, segments);
+		for (Point p : implicitPoints) _points.put(p.getName(), p.getX(), p.getY());
 
 		_segments = _pp.getAllSegments();
 	}
