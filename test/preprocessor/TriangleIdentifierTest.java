@@ -128,4 +128,37 @@ class TriangleIdentifierTest
 			assertTrue(expectedTriangles.contains(computedTriangle));
 		}
 	}
+	
+	//  A----B-----C--D-----E----------F
+	//
+	// This figure contains 0 triangles
+	//
+	@Test
+	void test_collinear_line_segments()
+	{
+		FigureNode fig = InputFacade.extractFigure("collinear_line_segments.json");
+
+		Map.Entry<PointDatabase, Set<Segment>> pair = InputFacade.toGeometryRepresentation(fig);
+		
+		ArrayList<Segment> segments = new ArrayList<Segment>(pair.getValue());
+
+		_points = pair.getKey();
+
+		_pp = new Preprocessor(_points, pair.getValue());
+
+		_pp.analyze();
+		
+		Set<Point> implicitPoints = ImplicitPointPreprocessor.compute(_points, segments);
+		for (Point p : implicitPoints) _points.put(p.getName(), p.getX(), p.getY());
+
+		_segments = _pp.getAllSegments();
+
+		TriangleIdentifier triIdentifier = new TriangleIdentifier(_segments);
+
+		Set<Triangle> computedTriangles = triIdentifier.getTriangles();
+
+		System.out.println(computedTriangles);
+
+		assertEquals(0, computedTriangles.size());
+	}
 }
