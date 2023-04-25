@@ -105,4 +105,50 @@ public class AngleLinkedEquivalenceClassTest {
 		assertEquals(2, classes.size());
 	}
 	
+	//
+	//        A
+	//        |
+	//    E---B---C
+	//        |
+	//        D
+	//
+	@Test
+	void testCross()
+	{
+		Point a = new Point("A", 1, 2);
+		Point b = new Point("B", 1, 1);
+		Point c = new Point("C", 2, 1);
+		Point d = new Point("D", 1, 0);
+		Point e = new Point("E", 0, 1);
+		
+		Segment ab = new Segment(a, b);
+		Segment bc = new Segment(b, c);
+		Segment bd = new Segment(b, d);
+		Segment be = new Segment(b, e);
+
+		//
+		// Non-minimal, computed segments: 2 in this figure.
+		//
+		Segment ad = new Segment(a, d);
+		Segment ce = new Segment(c, e);
+
+		List<Angle> angles = new ArrayList<Angle>();
+		try {
+			// in class
+			angles.add(new Angle(ab, bc));
+			
+			// not in class
+			angles.add(new Angle(bd, be));
+		}
+		catch (FactException te) { System.err.println("Invalid Angles in Angle test."); }
+
+		
+		AngleLinkedEquivalenceClass classes = new AngleLinkedEquivalenceClass();
+		for(Angle angle: angles) {
+			classes.add(angle);
+		}
+		
+		assertEquals(1, classes.size());
+	}
+	
 }

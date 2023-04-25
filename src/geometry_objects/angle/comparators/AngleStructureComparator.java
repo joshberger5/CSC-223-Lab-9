@@ -95,10 +95,10 @@ public class AngleStructureComparator implements Comparator<Angle>
 			double distance1 = Point.distance(leftEdge1, rightEdge1);
 			double distance2 = Point.distance(leftEdge2, rightEdge2);
 			
-			if(distance1 >= Point.distance(leftEdge1, vertex) &&
+			if(distance1 >= Point.distance(leftEdge1,  vertex) &&
 			   distance1 >= Point.distance(rightEdge1, vertex) ||
-			   distance2 >= Point.distance(leftEdge2, vertex) &&
-			   distance2 >= Point.distance(rightEdge2, vertex)) return STRUCTURALLY_INCOMPARABLE;
+			   distance2 >= Point.distance(leftEdge2,  vertex) &&
+			   distance2 >= Point.distance(rightEdge2, vertex)   ) return STRUCTURALLY_INCOMPARABLE;
 		}
 		
 		// checks both rays for the left angle are greater than
