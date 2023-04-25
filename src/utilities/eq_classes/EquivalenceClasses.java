@@ -35,7 +35,6 @@ public class EquivalenceClasses<T> {
 	 */
 	protected boolean createNewEquivalenceClassWithElement(T element) {
 		LinkedEquivalenceClass<T> equivalence = new LinkedEquivalenceClass<T>(_comparator);
-		equivalence.add(element);
 		
 		return _classes.add(equivalence);
 	}
@@ -93,6 +92,7 @@ public class EquivalenceClasses<T> {
 	public boolean add(T element) {
 		if (element == null || _comparator == null || contains(element)) return false;
 		if(addToValidEquivalenceClass(element)) return true;
+		
 		return createNewEquivalenceClassWithElement(element);
 	}
 	
@@ -123,6 +123,7 @@ public class EquivalenceClasses<T> {
 	 */
 	protected int indexOfClass(T element) {
 		int belongsIndex = indexOfClassBelongs(element);
+		
 		if(belongsIndex == -1 || !containsAt(element, belongsIndex)) return -1;
 		return belongsIndex;
 	}

@@ -63,6 +63,11 @@ public class AngleStructureComparator implements Comparator<Angle>
 		// checks if the left and right angles exist
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
 		
+		if(left == right) return 1;
+		
+		// check they share a vertex
+		if (left.getVertex() != right.getVertex()) return STRUCTURALLY_INCOMPARABLE;
+		
 		// checks that the measure of the two angles are the same
 		if(!MathUtilities.doubleEquals(left.getMeasure(), right.getMeasure())) return STRUCTURALLY_INCOMPARABLE;
 		
@@ -84,7 +89,7 @@ public class AngleStructureComparator implements Comparator<Angle>
 		
 		// check that all of the edge points are on the same side of the vertex
 		// as their corresponder
-		if(left.getMeasure() == 90 && right.getMeasure() == 90) {
+		if(!MathUtilities.doubleEquals(left.getMeasure(), 180)) {
 			Point vertex = left.getRay1().sharedVertex(left.getRay2());
 			
 			Point leftEdge1 = left.getRay1().other(vertex);
@@ -94,11 +99,12 @@ public class AngleStructureComparator implements Comparator<Angle>
 			
 			double distance1 = Point.distance(leftEdge1, rightEdge1);
 			double distance2 = Point.distance(leftEdge2, rightEdge2);
-			
-			if(distance1 >= Point.distance(leftEdge1,  vertex) &&
-			   distance1 >= Point.distance(rightEdge1, vertex) ||
-			   distance2 >= Point.distance(leftEdge2,  vertex) &&
-			   distance2 >= Point.distance(rightEdge2, vertex)   ) return STRUCTURALLY_INCOMPARABLE;
+		
+			if((distance1 > Point.distance(leftEdge1,  vertex) &&
+			   distance1 > Point.distance(rightEdge1, vertex)) ||
+			   (distance2 > Point.distance(leftEdge2,  vertex) &&
+			   distance2 > Point.distance(rightEdge2, vertex)))
+				return STRUCTURALLY_INCOMPARABLE;
 		}
 		
 		// checks both rays for the left angle are greater than

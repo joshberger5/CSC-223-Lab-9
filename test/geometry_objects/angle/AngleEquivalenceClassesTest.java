@@ -158,7 +158,6 @@ public class AngleEquivalenceClassesTest {
 			expectedAngles.add(new Angle(be, de));
 		}
 		catch (FactException te) { System.err.println("Invalid Angles in Angle test."); }
-
 		
 		AngleEquivalenceClasses classes = new AngleEquivalenceClasses();
 		for(Angle angle: expectedAngles) {

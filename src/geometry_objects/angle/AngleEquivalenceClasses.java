@@ -38,7 +38,7 @@ public class AngleEquivalenceClasses extends EquivalenceClasses<Angle> {
 	 */
 	@Override
     protected boolean createNewEquivalenceClassWithElement(Angle angle) {
-    	LinkedEquivalenceClass<Angle> equivalence = new AngleLinkedEquivalenceClass();
+		AngleLinkedEquivalenceClass equivalence = new AngleLinkedEquivalenceClass();
     	equivalence.add(angle);
     	
     	return _classes.add(equivalence);

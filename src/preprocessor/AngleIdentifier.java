@@ -42,6 +42,7 @@ public class AngleIdentifier
 			for(int j=i; j<segments.size(); j++) {
 				try {
 					Angle angle = new Angle(segments.get(i), segments.get(j));
+					System.out.println("Find: " + angle);
 					_angles.add(angle);
 				}
 				catch (FactException e) {}	
