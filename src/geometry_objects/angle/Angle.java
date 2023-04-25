@@ -178,13 +178,31 @@ public class Angle implements Comparable<Angle>
 		// check if the vertices aren't the same
 		if (!_vertex.equals((ang.getVertex()))) return false;
 		
-		// check if this angle's 1st endpoint doesn't equal one of the other angle's endpoints
-		if (!(_ray1Endpoint.equals(ang._ray1Endpoint) || _ray1Endpoint.equals(ang._ray2Endpoint))) return false;
+		// if this Angle's ray1 is equal to the passed-in Angle's ray1
+		// then this Angle's ray2 must be equal to the passed-in Angle's ray2
+		// also reversed
+		Segment ray1CorrespondingRay;
+		Segment ray2CorrespondingRay;
+		if (_ray1.equals(ang.getRay1())) {
+			ray1CorrespondingRay = ang.getRay1();
+			ray2CorrespondingRay = ang.getRay2();
+		}
+		else if (_ray1.equals(ang.getRay2())) {
+			ray1CorrespondingRay = ang.getRay2();
+			ray2CorrespondingRay = ang.getRay1();
+		}
+		// if this Angle's ray1 is not equal to either of the passed-in Angle's rays
+		// then they are not equal
+		else return false;
 		
-		// check if this angle's 2nd endpoint doesn't equal one of the other angle's endpoints
-		if (!(_ray2Endpoint.equals(ang._ray1Endpoint) || _ray2Endpoint.equals(ang._ray2Endpoint))) return false;
+		// if this Angle's ray1 matches one of the passed-in Angle's rays
+		// but this Angle's ray2 doesn't match the passed-in Angle's other ray
+		// then they are not equal
+		if (!_ray2.equals(ray2CorrespondingRay)) return false;
 		
-		// if the vertices are the same and both endpoints match the other ray's endpoints, then they are equal
+		// to get to here:
+		// both vertices are the same
+		// and this Angle's ray1 and ray2 match the passed-in Angle's rays
 		return true;
 	}
 }
