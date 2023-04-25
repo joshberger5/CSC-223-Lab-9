@@ -93,8 +93,8 @@ public class InputFacade
 	
 	private static Segment toSegment(SegmentNode input) 
 	{
-	    Point p1 = new Point(input.getPoint1().getX(), input.getPoint1().getY());
-	    Point p2 = new Point(input.getPoint2().getX(), input.getPoint2().getY());
+	    Point p1 = new Point(input.getPoint1().getName(), input.getPoint1().getX(), input.getPoint1().getY());
+	    Point p2 = new Point(input.getPoint2().getName(), input.getPoint2().getX(), input.getPoint2().getY());
 	    
 	    return new Segment(p1, p2);
 	}

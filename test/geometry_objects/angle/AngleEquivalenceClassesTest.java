@@ -3,6 +3,7 @@ package geometry_objects.angle;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class AngleEquivalenceClassesTest {
 	
 	protected void init(String filename)
 	{
-		FigureNode fig = InputFacade.extractFigure("crossing_symmetric_triangle.json");
+		FigureNode fig = InputFacade.extractFigure(filename);
 
 		Map.Entry<PointDatabase, Set<Segment>> pair = InputFacade.toGeometryRepresentation(fig);
 
@@ -51,7 +52,7 @@ public class AngleEquivalenceClassesTest {
 	//   /  *_A  \  *_A is not a specified point (it is implied)
 	//  / /     \ \ 
 	// D-----------E
-	// This figure contains 40 angles
+	// This figure contains 44 angles
 	//
 	@Test
 	void test_crossing_symmetric_triangle()
@@ -155,6 +156,85 @@ public class AngleEquivalenceClassesTest {
 			
 			expectedAngles.add(new Angle(a_star_e, de));
 			expectedAngles.add(new Angle(be, de));
+		}
+		catch (FactException te) { System.err.println("Invalid Angles in Angle test."); }
+
+		
+		AngleEquivalenceClasses classes = new AngleEquivalenceClasses();
+		for(Angle angle: expectedAngles) {
+			classes.add(angle);
+		}
+		
+		assertEquals(expectedAngles.size(), classes.size());
+		
+		//
+		// Equality
+		//
+		for (Angle expected : expectedAngles)
+		{
+			assertTrue(classes.contains(expected));
+		}
+	}
+	
+	//
+	// A---B---C---D---E---F
+	// This figure contains 20 angles
+	@Test
+	void test_collinear_line_segments()
+	{
+		init("collinear_line_segments.json");
+		
+		//
+		// ALL original segments: 5 in this figure.
+		//
+		Segment ab = new Segment(_points.getPoint("A"), _points.getPoint("B"));
+		Segment bc = new Segment(_points.getPoint("B"), _points.getPoint("C"));
+		Segment cd = new Segment(_points.getPoint("C"), _points.getPoint("D"));
+		Segment de = new Segment(_points.getPoint("D"), _points.getPoint("E"));
+		Segment ef = new Segment(_points.getPoint("E"), _points.getPoint("F"));
+		
+		//
+		// Non-minimal, computed segments: 10 in this figure.
+		//
+		Segment ac = new Segment(_points.getPoint("A"), _points.getPoint("C"));
+		Segment ad = new Segment(_points.getPoint("A"), _points.getPoint("D"));
+		Segment ae = new Segment(_points.getPoint("A"), _points.getPoint("E"));
+		Segment af = new Segment(_points.getPoint("A"), _points.getPoint("F"));
+		Segment bd = new Segment(_points.getPoint("B"), _points.getPoint("D"));
+		Segment be = new Segment(_points.getPoint("B"), _points.getPoint("E"));
+		Segment bf = new Segment(_points.getPoint("B"), _points.getPoint("F"));
+		Segment ce = new Segment(_points.getPoint("C"), _points.getPoint("E"));
+		Segment cf = new Segment(_points.getPoint("C"), _points.getPoint("F"));
+		Segment df = new Segment(_points.getPoint("D"), _points.getPoint("F"));
+
+		//
+		// Angles we expect to find (20)
+		//
+		List<Angle> expectedAngles = new ArrayList<Angle>();
+		try {
+			expectedAngles.add(new Angle(ab, bc));
+			expectedAngles.add(new Angle(ab, bd));
+			expectedAngles.add(new Angle(ab, be));
+			expectedAngles.add(new Angle(ab, bf));
+			
+			expectedAngles.add(new Angle(ac, cd));
+			expectedAngles.add(new Angle(bc, cd));
+			expectedAngles.add(new Angle(ac, ce));
+			expectedAngles.add(new Angle(bc, ce));
+			expectedAngles.add(new Angle(ac, cf));
+			expectedAngles.add(new Angle(bc, cf));
+			
+			expectedAngles.add(new Angle(ad, de));
+			expectedAngles.add(new Angle(bd, de));
+			expectedAngles.add(new Angle(cd, de));
+			expectedAngles.add(new Angle(ad, df));
+			expectedAngles.add(new Angle(bd, df));
+			expectedAngles.add(new Angle(cd, df));
+			
+			expectedAngles.add(new Angle(ae, ef));
+			expectedAngles.add(new Angle(be, ef));
+			expectedAngles.add(new Angle(ce, ef));
+			expectedAngles.add(new Angle(de, ef));
 		}
 		catch (FactException te) { System.err.println("Invalid Angles in Angle test."); }
 

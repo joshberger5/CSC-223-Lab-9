@@ -63,7 +63,6 @@ public class JSONParser
 			pnd = getPointNodeDatabase(values);
 			snd = getSegmentNodeDatabase(values, pnd);
 		}
-		
 		catch(JSONException e) { throw new ParseException("File is incorrecly formatted."); }
 		
 		// return FigureNode with input data 
@@ -137,7 +136,7 @@ public class JSONParser
 		for(Object segment : segments) {
 			makeSegmentNodeDatabase(segment, pnd, snd);
 		}
-
+		
 		return snd;
 	}
 
@@ -155,7 +154,7 @@ public class JSONParser
 		// get the head PointNode
 		String headName = s_str.substring(2, 3);
 		PointNode head = points.getPoint(headName);
-
+		
 		// find all tail PointNodes and add the segments 
 		for(int i = 5; i < s_str.length(); i++) {
 
@@ -165,6 +164,7 @@ public class JSONParser
 
 				// get the tail PointNode
 				String tailName = s_str.substring(i + 1, i + 2);
+				
 				PointNode tail = points.getPoint(tailName);
 
 				// add the head/tail pairing to the SegmentNodeDatabase

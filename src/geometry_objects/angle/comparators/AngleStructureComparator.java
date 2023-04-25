@@ -61,19 +61,36 @@ public class AngleStructureComparator implements Comparator<Angle>
 	public int compare(Angle left, Angle right)
 	{
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
-		if(left.getMeasure() != right.getMeasure()) return STRUCTURALLY_INCOMPARABLE;
+		if(!MathUtilities.doubleEquals(left.getMeasure(), right.getMeasure())) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
 		// if not, the angles are structurally incomparable
-		Segment leftRay1Corresponder = corresponder(left.getRay1(), right);
+		Segment leftRay1Corresponder = null;
+		if (left.getRay1().isCollinearWith(right.getRay1())) leftRay1Corresponder = right.getRay1();
+		if (left.getRay1().isCollinearWith(right.getRay2())) leftRay1Corresponder = right.getRay2();
+		
 		if (leftRay1Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
 		// if not, the angles are structurally incomparable
-		Segment leftRay2Corresponder = corresponder(left.getRay2(), right);
+		Segment leftRay2Corresponder = null;
+		if (left.getRay2().isCollinearWith(right.getRay2())) leftRay2Corresponder = right.getRay2();
+		if (left.getRay2().isCollinearWith(right.getRay1())) leftRay2Corresponder = right.getRay1();
+		
 		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
+		
+		if(left.getMeasure() == 90 && right.getMeasure() == 90) {
+			Point vertex = left.getRay1().sharedVertex(left.getRay2());
+			Point leftEdge1 = left.getRay1().other(vertex);
+			Point leftEdge2 = left.getRay2().other(vertex);
+			Point rightEdge1 = leftRay1Corresponder.other(vertex);
+			Point rightEdge2 = leftRay2Corresponder.other(vertex);
+			
+			if(Point.distance(leftEdge1, rightEdge1) >= Point.distance(leftEdge1, vertex)) return STRUCTURALLY_INCOMPARABLE;
+			if(Point.distance(leftEdge2, rightEdge2) >= Point.distance(leftEdge2, vertex)) return STRUCTURALLY_INCOMPARABLE;
+		}
 		
 		// checks both rays for the left angle are greater than
 		// or equal in length to the corresponding rays in the right angle
@@ -92,18 +109,5 @@ public class AngleStructureComparator implements Comparator<Angle>
 		// they are structurally comparable, but both rays for the left angle
 		// aren't both greater or both less than both rays for the right angle
 		return 0;
-	}
-	
-	/**
-	 * Checks to see if a Segment is collinear with one of the Rays for an Angle
-	 * @param s - the Segment to check against the Rays
-	 * @param a - the Angle containing the Rays to check against the Segment
-	 * @return which Ray from Angle a s is collinear with,
-	 * if neither, returns null
-	 */
-	private Segment corresponder(Segment s, Angle a) {
-		if (s.isCollinearWith(a.getRay1())) return a.getRay1();
-		if (s.isCollinearWith(a.getRay2())) return a.getRay2();
-		return null;
 	}
 }

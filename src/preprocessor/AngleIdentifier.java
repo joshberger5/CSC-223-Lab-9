@@ -21,7 +21,7 @@ public class AngleIdentifier
 	}
 
 	/*
-	 * Compute the figure triangles on the fly when requested; memorize results for subsequent calls.
+	 * Compute the figure angles on the fly when requested; memorize results for subsequent calls.
 	 */
 	public AngleEquivalenceClasses getAngles()
 	{
@@ -42,18 +42,11 @@ public class AngleIdentifier
 			for(int j=i; j<segments.size(); j++) {
 				try {
 					Angle angle = new Angle(segments.get(i), segments.get(j));
-					
-					if(!MathUtilities.doubleEquals(angle.getMeasure(), 180) &&
-					   !MathUtilities.doubleEquals(angle.getMeasure(), 360)) 
-					{
-						
-						_angles.add(angle);
-					}
+					_angles.add(angle);
 				}
 				catch (FactException e) {}	
 			}
 		}
-		System.out.println(_angles);
 	}
 }
 

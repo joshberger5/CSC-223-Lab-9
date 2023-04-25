@@ -142,7 +142,7 @@ public class Preprocessor
 	 * @param implicitPoints
 	 * @return the set of implicit segments
 	 */
-	protected Set<Segment> computeImplicitBaseSegments(Set<Point> implicitPoints) {
+	public Set<Segment> computeImplicitBaseSegments(Set<Point> implicitPoints) {
 		Set<Segment> implicitSegments = new LinkedHashSet<Segment>();
 		for(Segment segment: _givenSegments) {
 			implicitSegments.addAll(computeImplicitSegmentBreaksIfExists(segment, implicitPoints));
@@ -172,7 +172,7 @@ public class Preprocessor
 	 * @param implicitSegments
 	 * @return the set of all minimal segments
 	 */
-	protected Set<Segment> identifyAllMinimalSegments(Set<Point> implicitPoints, Set<Segment> givenSegments, Set<Segment> implicitSegments) {
+	public Set<Segment> identifyAllMinimalSegments(Set<Point> implicitPoints, Set<Segment> givenSegments, Set<Segment> implicitSegments) {
 		Set<Segment> allMinimalSegments = new LinkedHashSet<Segment>();
 		for (Segment segment : givenSegments) {
 			if (isMinimal(segment, implicitPoints)) {

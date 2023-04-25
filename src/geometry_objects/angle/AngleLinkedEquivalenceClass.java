@@ -43,7 +43,7 @@ public class AngleLinkedEquivalenceClass extends LinkedEquivalenceClass<Angle> {
 	}
 	
 	/**
-	 * if the element belongs in the list and isn't in it add it to the front of the rest of the list
+	 * if the angle belongs in the list and isn't in it add it to the front of the rest of the list
 	 * @param angle
 	 * @return whether the element was added
 	 */

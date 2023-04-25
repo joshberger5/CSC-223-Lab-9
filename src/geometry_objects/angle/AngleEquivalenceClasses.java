@@ -32,14 +32,14 @@ public class AngleEquivalenceClasses extends EquivalenceClasses<Angle> {
 	}
 	
 	/**                                                                                  
-	 * creates a new equivalence class with the element                                 
-	 * @param element                                                                   
-	 * @return whether the class was created                                            
+	 * creates a new equivalence class with the angle
+	 * @param angle
+	 * @return whether the class was created
 	 */
 	@Override
-    protected boolean createNewEquivalenceClassWithElement(Angle element) {
+    protected boolean createNewEquivalenceClassWithElement(Angle angle) {
     	LinkedEquivalenceClass<Angle> equivalence = new AngleLinkedEquivalenceClass();
-    	equivalence.add(element);
+    	equivalence.add(angle);
     	
     	return _classes.add(equivalence);
     }
