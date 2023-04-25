@@ -63,7 +63,7 @@ public class AngleStructureComparator implements Comparator<Angle>
 		// checks if the left and right angles exist
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
 		
-		if(left == right) return 1;
+		if(left.equals(right)) return 1;
 		
 		// check they share a vertex
 		if (left.getVertex() != right.getVertex()) return STRUCTURALLY_INCOMPARABLE;

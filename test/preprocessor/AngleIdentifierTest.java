@@ -62,7 +62,7 @@ class AngleIdentifierTest
 
 		AngleEquivalenceClasses computedAngles = angleIdentifier.getAngles();
 
-		System.out.println(computedAngles);
+		System.out.println(computedAngles);		
 		
 		// The number of classes should equate to the number of 'minimal' angles
 		//assertEquals(25, computedAngles.numClasses(), "Number of Angle Equivalence classes");
