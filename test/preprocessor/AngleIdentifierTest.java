@@ -203,7 +203,7 @@ class AngleIdentifierTest
 		//
 		// ALL original segments: 5 in this figure.
 		//
-		System.out.println(_points.getPoint("E") + " " + _points.getPoint("F"));
+		
 		Segment ab = new Segment(_points.getPoint("A"), _points.getPoint("B"));
 		Segment bc = new Segment(_points.getPoint("B"), _points.getPoint("C"));
 		Segment cd = new Segment(_points.getPoint("C"), _points.getPoint("D"));

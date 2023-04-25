@@ -60,7 +60,10 @@ public class AngleStructureComparator implements Comparator<Angle>
 	@Override
 	public int compare(Angle left, Angle right)
 	{
+		// checks if the left and right angles exist
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
+		
+		// checks that the measure of the two angles are the same
 		if(!MathUtilities.doubleEquals(left.getMeasure(), right.getMeasure())) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks if left's 1st ray corresponds with one of right's rays
@@ -69,7 +72,6 @@ public class AngleStructureComparator implements Comparator<Angle>
 		Segment leftRay1Corresponder = null;
 		if (left.getRay1().isCollinearWith(right.getRay1())) leftRay1Corresponder = right.getRay1();
 		if (left.getRay1().isCollinearWith(right.getRay2())) leftRay1Corresponder = right.getRay2();
-		
 		if (leftRay1Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks if left's 1st ray corresponds with one of right's rays
@@ -78,18 +80,25 @@ public class AngleStructureComparator implements Comparator<Angle>
 		Segment leftRay2Corresponder = null;
 		if (left.getRay2().isCollinearWith(right.getRay2())) leftRay2Corresponder = right.getRay2();
 		if (left.getRay2().isCollinearWith(right.getRay1())) leftRay2Corresponder = right.getRay1();
-		
 		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
 		
+		// check that all of the edge points are on the same side of the vertex
+		// as their corresponder
 		if(left.getMeasure() == 90 && right.getMeasure() == 90) {
 			Point vertex = left.getRay1().sharedVertex(left.getRay2());
+			
 			Point leftEdge1 = left.getRay1().other(vertex);
 			Point leftEdge2 = left.getRay2().other(vertex);
 			Point rightEdge1 = leftRay1Corresponder.other(vertex);
 			Point rightEdge2 = leftRay2Corresponder.other(vertex);
 			
-			if(Point.distance(leftEdge1, rightEdge1) >= Point.distance(leftEdge1, vertex)) return STRUCTURALLY_INCOMPARABLE;
-			if(Point.distance(leftEdge2, rightEdge2) >= Point.distance(leftEdge2, vertex)) return STRUCTURALLY_INCOMPARABLE;
+			double distance1 = Point.distance(leftEdge1, rightEdge1);
+			double distance2 = Point.distance(leftEdge2, rightEdge2);
+			
+			if(distance1 >= Point.distance(leftEdge1, vertex) &&
+			   distance1 >= Point.distance(rightEdge1, vertex) ||
+			   distance2 >= Point.distance(leftEdge2, vertex) &&
+			   distance2 >= Point.distance(rightEdge2, vertex)) return STRUCTURALLY_INCOMPARABLE;
 		}
 		
 		// checks both rays for the left angle are greater than

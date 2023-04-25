@@ -63,8 +63,6 @@ class TriangleIdentifierTest
 
 		Set<Triangle> computedTriangles = triIdentifier.getTriangles();
 
-		System.out.println(computedTriangles);
-
 		assertEquals(12, computedTriangles.size());
 
 		//
@@ -156,8 +154,6 @@ class TriangleIdentifierTest
 		TriangleIdentifier triIdentifier = new TriangleIdentifier(_segments);
 
 		Set<Triangle> computedTriangles = triIdentifier.getTriangles();
-
-		System.out.println(computedTriangles);
 
 		assertEquals(0, computedTriangles.size());
 	}
