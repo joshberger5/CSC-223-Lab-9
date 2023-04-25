@@ -60,11 +60,12 @@ public class AngleStructureComparator implements Comparator<Angle>
 	@Override
 	public int compare(Angle left, Angle right)
 	{
+		
 		// checks if the left and right angles exist
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
 		
 		if(left.equals(right)) return 1;
-		
+		System.out.println("gets: " + right + " " + left);
 		// check they share a vertex
 		if (left.getVertex() != right.getVertex()) return STRUCTURALLY_INCOMPARABLE;
 		
@@ -86,6 +87,8 @@ public class AngleStructureComparator implements Comparator<Angle>
 		if (left.getRay2().isCollinearWith(right.getRay2())) leftRay2Corresponder = right.getRay2();
 		if (left.getRay2().isCollinearWith(right.getRay1())) leftRay2Corresponder = right.getRay1();
 		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
+		
+		
 		
 		// check that all of the edge points are on the same side of the vertex
 		// as their corresponder

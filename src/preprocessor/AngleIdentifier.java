@@ -39,10 +39,9 @@ public class AngleIdentifier
 		ArrayList<Segment> segments = new ArrayList<Segment>(_segments.keySet());
 		
 		for(int i=0; i<segments.size()-1; i++) {
-			for(int j=i; j<segments.size(); j++) {
+			for(int j=i+1; j<segments.size(); j++) {
 				try {
 					Angle angle = new Angle(segments.get(i), segments.get(j));
-					System.out.println("Find: " + angle);
 					_angles.add(angle);
 				}
 				catch (FactException e) {}	
