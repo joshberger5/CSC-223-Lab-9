@@ -61,17 +61,19 @@ public class AngleStructureComparator implements Comparator<Angle>
 	public int compare(Angle left, Angle right)
 	{
 		if (left == null || right == null) return STRUCTURALLY_INCOMPARABLE;
+		if(left.getMeasure() != right.getMeasure()) return STRUCTURALLY_INCOMPARABLE;
+		
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
 		// if not, the angles are structurally incomparable
 		Segment leftRay1Corresponder = corresponder(left.getRay1(), right);
-		if (leftRay1Corresponder == null) return STRUCTURALLY_INCOMPARABLE;;
+		if (leftRay1Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks if left's 1st ray corresponds with one of right's rays
 		// if so, saves which one
 		// if not, the angles are structurally incomparable
 		Segment leftRay2Corresponder = corresponder(left.getRay2(), right);
-		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;;
+		if (leftRay2Corresponder == null) return STRUCTURALLY_INCOMPARABLE;
 		
 		// checks both rays for the left angle are greater than
 		// or equal in length to the corresponding rays in the right angle

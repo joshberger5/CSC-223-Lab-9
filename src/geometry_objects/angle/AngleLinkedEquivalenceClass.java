@@ -60,14 +60,13 @@ public class AngleLinkedEquivalenceClass extends LinkedEquivalenceClass<Angle> {
 		
 		if(_comparator.compare(_canonical, angle) == -1) {
 			demoteAndSetCanonical(angle);
+			return true;
 		}
 		
-		// if the element does not belong in the set
-		// or
-		// it matches either the canonical or a non-canonical element
-		// then don't add it (its a set, so it shouldn't have repeats)
 		if (!belongs(angle) || _canonical.equals(angle) || _rest.contains(angle)) return false;
+		
 		_rest.addToFront(angle);
+		
 		return true;
 	}
 }

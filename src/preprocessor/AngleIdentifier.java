@@ -8,6 +8,7 @@ import exceptions.FactException;
 import geometry_objects.Segment;
 import geometry_objects.angle.Angle;
 import geometry_objects.angle.AngleEquivalenceClasses;
+import utilities.math.MathUtilities;
 
 public class AngleIdentifier
 {
@@ -41,11 +42,18 @@ public class AngleIdentifier
 			for(int j=i; j<segments.size(); j++) {
 				try {
 					Angle angle = new Angle(segments.get(i), segments.get(j));
-					_angles.add(angle);
+					
+					if(!MathUtilities.doubleEquals(angle.getMeasure(), 180) &&
+					   !MathUtilities.doubleEquals(angle.getMeasure(), 360)) 
+					{
+						
+						_angles.add(angle);
+					}
 				}
 				catch (FactException e) {}	
 			}
 		}
+		System.out.println(_angles);
 	}
 }
 

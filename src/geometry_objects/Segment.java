@@ -21,24 +21,21 @@ public class Segment extends GeometricObject
 
 	public Point getPoint1() { return _point1; }
 	public Point getPoint2() { return _point2; }
-	public double length() { 
-		_length = Point.distance(_point2, _point1);
-		return _length;
-	}
-	public double slope()
-	{
-		try { return GeometryUtilities.slope(_point1, _point2); }
-		catch(ArithmeticException ae) { return Double.POSITIVE_INFINITY; }
-	}
+	public double length() { return _length; }
+	public double slope() {	return _slope; }
 
 	public Segment(Segment in) { this(in._point1, in._point2); }
 	public Segment(Point p1, Point p2)
 	{
 		_point1 = p1;
 		_point2 = p2;
-		length();
-		_slope = slope();
-		
+		_length = Point.distance(_point2, _point1);
+		try {
+			_slope = GeometryUtilities.slope(_point1, _point2);
+		}
+		catch(ArithmeticException ae) {
+			_slope = Double.POSITIVE_INFINITY;
+		}
 	}
 
 	/*

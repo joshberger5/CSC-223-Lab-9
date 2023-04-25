@@ -179,10 +179,10 @@ public class Angle implements Comparable<Angle>
 		if (!_vertex.equals((ang.getVertex()))) return false;
 		
 		// check if this angle's 1st endpoint doesn't equal one of the other angle's endpoints
-		if (!_ray1Endpoint.equals(ang._ray1Endpoint) && !_ray1Endpoint.equals(ang._ray2Endpoint)) return false;
+		if (!(_ray1Endpoint.equals(ang._ray1Endpoint) || _ray1Endpoint.equals(ang._ray2Endpoint))) return false;
 		
 		// check if this angle's 2nd endpoint doesn't equal one of the other angle's endpoints
-		if (!_ray2Endpoint.equals(ang._ray1Endpoint) && !_ray2Endpoint.equals(ang._ray2Endpoint)) return false;
+		if (!(_ray2Endpoint.equals(ang._ray1Endpoint) || _ray2Endpoint.equals(ang._ray2Endpoint))) return false;
 		
 		// if the vertices are the same and both endpoints match the other ray's endpoints, then they are equal
 		return true;

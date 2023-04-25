@@ -36,6 +36,7 @@ public class EquivalenceClasses<T> {
 	protected boolean createNewEquivalenceClassWithElement(T element) {
 		LinkedEquivalenceClass<T> equivalence = new LinkedEquivalenceClass<T>(_comparator);
 		equivalence.add(element);
+		
 		return _classes.add(equivalence);
 	}
 
@@ -47,6 +48,7 @@ public class EquivalenceClasses<T> {
 	private boolean addToValidEquivalenceClass(T element) {
 		int belongsIndex = indexOfClassBelongs(element);
 		if(belongsIndex == -1) return false;
+		
 		return _classes.get(belongsIndex).add(element);
 	}
 	

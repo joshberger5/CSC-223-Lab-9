@@ -1,9 +1,9 @@
 package preprocessor;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +59,7 @@ class AngleIdentifierTest
 		AngleEquivalenceClasses computedAngles = angleIdentifier.getAngles();
 
 		// The number of classes should equate to the number of 'minimal' angles
-		assertEquals("Number of Angle Equivalence classes", 25, computedAngles.numClasses());
+		assertEquals(25, computedAngles.numClasses(), "Number of Angle Equivalence classes");
 		
 		//
 		// ALL original segments: 8 in this figure.

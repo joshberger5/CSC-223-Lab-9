@@ -40,6 +40,7 @@ public class AngleEquivalenceClasses extends EquivalenceClasses<Angle> {
     protected boolean createNewEquivalenceClassWithElement(Angle element) {
     	LinkedEquivalenceClass<Angle> equivalence = new AngleLinkedEquivalenceClass();
     	equivalence.add(element);
+    	
     	return _classes.add(equivalence);
     }
 }
